@@ -1,4 +1,6 @@
 
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const testimonials = [
   {
     name: "Sarah Johnson",
@@ -21,14 +23,18 @@ const testimonials = [
 ];
 
 export const Testimonials = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-background transition-colors duration-300">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-blue-900 mb-6">
+        <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${
+          isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[20px]'
+        }`}>
+          <h2 className="text-4xl lg:text-5xl font-bold text-holy-blue dark:text-holy-gold mb-6 text-shadow">
             What Our Community Says
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
             Join thousands of believers who are spreading joy and faith through our designs.
           </p>
         </div>
@@ -37,22 +43,25 @@ export const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-blue-50 to-yellow-50 rounded-2xl p-8 shadow-lg border border-gray-100"
+              className={`bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 shadow-lg border border-border transition-all duration-500 hover:shadow-xl hover-scale ${
+                isVisible ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'
+              }`}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-3xl mr-4">
+                <div className="w-16 h-16 bg-holy-gold rounded-full flex items-center justify-center text-3xl mr-4 animate-float">
                   {testimonial.image}
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-blue-900">{testimonial.name}</h4>
-                  <div className="flex text-yellow-400">
+                  <h4 className="text-lg font-bold text-holy-blue dark:text-white">{testimonial.name}</h4>
+                  <div className="flex text-holy-gold">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i}>★</span>
+                      <span key={i} className="animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}>★</span>
                     ))}
                   </div>
                 </div>
               </div>
-              <p className="text-gray-700 italic leading-relaxed">"{testimonial.text}"</p>
+              <p className="text-foreground/80 italic leading-relaxed">"{testimonial.text}"</p>
             </div>
           ))}
         </div>
