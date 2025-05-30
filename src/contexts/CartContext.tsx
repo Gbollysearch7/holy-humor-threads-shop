@@ -27,17 +27,18 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const addToCart = (item: CartItem) => {
     setItems(currentItems => {
-      const existingItem = currentItems.find(i => i.id === item.id && i.size === item.size);
+      const itemKey = `${item.id}-${item.size}`;
+      const existingItem = currentItems.find(i => `${i.id}-${i.size}` === itemKey);
       
       if (existingItem) {
         return currentItems.map(i => 
-          i.id === item.id && i.size === item.size
+          `${i.id}-${i.size}` === itemKey
             ? { ...i, quantity: i.quantity + item.quantity }
             : i
         );
       }
       
-      return [...currentItems, item];
+      return [...currentItems, { ...item, id: itemKey }];
     });
   };
 

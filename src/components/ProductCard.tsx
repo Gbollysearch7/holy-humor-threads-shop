@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface Product {
   id: string;
@@ -20,6 +21,7 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const handleAddToCart = () => {
     addToCart({
@@ -29,6 +31,11 @@ export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
       image: product.image,
       quantity: 1,
       size: "M" // Default size
+    });
+
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart`,
     });
   };
 
