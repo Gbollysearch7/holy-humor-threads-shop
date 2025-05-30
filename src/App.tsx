@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
-import About from "./pages/About";
+import Blog from "./pages/Blog";
 import OurStory from "./pages/OurStory";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -26,7 +26,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/shop" element={<Shop />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="/our-story" element={<OurStory />} />
               <Route path="/contact" element={<Contact />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

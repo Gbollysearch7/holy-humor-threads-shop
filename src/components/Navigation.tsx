@@ -32,8 +32,8 @@ export const Navigation = () => {
               <Link to="/shop" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium hover:scale-105">
                 Shop
               </Link>
-              <Link to="/about" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium hover:scale-105">
-                About
+              <Link to="/blog" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium hover:scale-105">
+                Blog
               </Link>
               <Link to="/our-story" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium hover:scale-105">
                 Our Story
@@ -86,8 +86,8 @@ export const Navigation = () => {
               <Link to="/shop" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium transform hover:translateX-2" onClick={() => setIsMenuOpen(false)}>
                 Shop
               </Link>
-              <Link to="/about" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium transform hover:translateX-2" onClick={() => setIsMenuOpen(false)}>
-                About
+              <Link to="/blog" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium transform hover:translateX-2" onClick={() => setIsMenuOpen(false)}>
+                Blog
               </Link>
               <Link to="/our-story" className="text-foreground/80 hover:text-holy-blue dark:hover:text-holy-gold transition-all duration-300 font-medium transform hover:translateX-2" onClick={() => setIsMenuOpen(false)}>
                 Our Story
