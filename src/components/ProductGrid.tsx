@@ -1,85 +1,19 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  image: string;
-  description: string;
-  sizes: string[];
-}
+import { enhancedProducts, DetailedProduct } from "@/data/enhancedProducts";
 
 interface ProductGridProps {
   category: string;
   sortBy: string;
 }
 
-const mockProducts: Product[] = [
-  {
-    id: "1",
-    name: "Blessed & Caffeinated",
-    price: 24.99,
-    category: "humor",
-    image: "☕",
-    description: "Perfect for coffee-loving Christians who need their daily dose of both caffeine and blessings.",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  },
-  {
-    id: "2",
-    name: "Faith Over Fear",
-    price: 26.99,
-    category: "inspirational",
-    image: "✝️",
-    description: "A powerful reminder that with God, we can overcome any challenge life throws our way.",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  },
-  {
-    id: "3",
-    name: "Holy Guacamole",
-    price: 23.99,
-    category: "humor",
-    image: "🥑",
-    description: "A holy twist on everyone's favorite exclamation. Perfect for foodie Christians!",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  },
-  {
-    id: "4",
-    name: "Chosen & Loved",
-    price: 25.99,
-    category: "inspirational",
-    image: "💕",
-    description: "A beautiful reminder of our identity in Christ and His unconditional love for us.",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  },
-  {
-    id: "5",
-    name: "Jesus Saves... Files",
-    price: 24.99,
-    category: "humor",
-    image: "💾",
-    description: "For the tech-savvy believers who know Jesus saves more than just files!",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  },
-  {
-    id: "6",
-    name: "Pray More Worry Less",
-    price: 26.99,
-    category: "inspirational",
-    image: "🙏",
-    description: "A gentle reminder to turn our anxieties into prayers and trust God's plan.",
-    sizes: ["S", "M", "L", "XL", "XXL"]
-  }
-];
-
 export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(mockProducts);
+  const [filteredProducts, setFilteredProducts] = useState<DetailedProduct[]>(enhancedProducts);
   const { ref, isVisible } = useScrollAnimation();
 
   useEffect(() => {
-    let products = [...mockProducts];
+    let products = [...enhancedProducts];
 
     // Filter by category
     if (category !== "all") {
