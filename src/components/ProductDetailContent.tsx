@@ -7,6 +7,9 @@ import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { DetailedProduct } from "@/data/enhancedProducts";
 import { Star, Plus, Minus, Heart } from "lucide-react";
+import { ProductImageZoom } from "@/components/ProductImageZoom";
+import { SizeGuide } from "@/components/SizeGuide";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 interface ProductDetailContentProps {
   product: DetailedProduct;
@@ -16,10 +19,11 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!selectedSize) {
       toast({
         title: "Please select a size",
@@ -29,19 +33,34 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
       return;
     }
 
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: quantity,
-      size: selectedSize
-    });
+    setIsAddingToCart(true);
+    
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 800));
 
-    toast({
-      title: "Added to cart!",
-      description: `${product.name} (${selectedSize}) has been added to your cart`,
-    });
+    try {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: quantity,
+        size: selectedSize
+      });
+
+      toast({
+        title: "Added to cart!",
+        description: `${product.name} (${selectedSize}) has been added to your cart`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error adding to cart",
+        description: "Please try again",
+        variant: "destructive"
+      });
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   const incrementQuantity = () => {
@@ -69,10 +88,11 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
     <div className="grid lg:grid-cols-2 gap-12 mb-16">
       {/* Product Images */}
       <div className="space-y-4">
-        <div className="aspect-square bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 dark:from-holy-gold/10 dark:to-holy-blue/10 rounded-lg flex items-center justify-center">
+        <div className="relative group aspect-square bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 dark:from-holy-gold/10 dark:to-holy-blue/10 rounded-lg flex items-center justify-center">
           <div className="text-8xl animate-float">
             {product.image}
           </div>
+          <ProductImageZoom image={product.image} productName={product.name} />
         </div>
         
         <div className="grid grid-cols-3 gap-2">
@@ -106,6 +126,11 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
           
           <div className="text-3xl font-bold text-holy-blue dark:text-holy-gold mb-4">
             ${product.price}
+            {product.originalPrice && (
+              <span className="text-lg text-foreground/50 line-through ml-2">
+                ${product.originalPrice}
+              </span>
+            )}
           </div>
           
           <p className="text-foreground/70 text-lg">
@@ -115,7 +140,10 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
 
         {/* Size Selection */}
         <div>
-          <h3 className="font-semibold mb-3">Size</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-semibold">Size</h3>
+            <SizeGuide />
+          </div>
           <div className="flex gap-2">
             {product.sizes.map((size) => (
               <Button
@@ -162,15 +190,24 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
         <div className="flex gap-3">
           <Button 
             onClick={handleAddToCart}
+            disabled={!product.inStock || isAddingToCart}
             className="flex-1 bg-holy-blue hover:bg-holy-blue/90 dark:bg-holy-gold dark:hover:bg-holy-gold/90 dark:text-gray-900"
-            disabled={!product.inStock}
           >
-            {product.inStock ? "Add to Cart" : "Out of Stock"}
+            {isAddingToCart ? "Adding..." : product.inStock ? "Add to Cart" : "Out of Stock"}
           </Button>
           <Button variant="outline" size="icon">
             <Heart className="h-4 w-4" />
           </Button>
         </div>
+
+        {/* Stock Status */}
+        {product.stockCount <= 5 && product.inStock && (
+          <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-3">
+            <p className="text-sm text-orange-800 dark:text-orange-300">
+              ⚡ Only {product.stockCount} left in stock - order soon!
+            </p>
+          </div>
+        )}
 
         {/* Product Details Tabs */}
         <Card>
@@ -201,6 +238,10 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
                     <h4 className="font-semibold mb-2">Materials</h4>
                     <p className="text-sm text-foreground/70">{product.materials}</p>
                   </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Fit</h4>
+                    <p className="text-sm text-foreground/70">{product.fit}</p>
+                  </div>
                 </div>
               )}
               
@@ -224,25 +265,11 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
               )}
               
               {activeTab === "reviews" && (
-                <div className="space-y-4">
-                  {product.reviews.map((review) => (
-                    <div key={review.id} className="border-b border-border last:border-b-0 pb-4 last:pb-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">{review.customerName}</span>
-                          {review.verified && (
-                            <Badge variant="secondary" className="text-xs">Verified</Badge>
-                          )}
-                        </div>
-                        <div className="flex items-center">
-                          {renderStars(review.rating)}
-                        </div>
-                      </div>
-                      <p className="text-sm text-foreground/70 mb-1">{review.comment}</p>
-                      <p className="text-xs text-foreground/50">{review.date}</p>
-                    </div>
-                  ))}
-                </div>
+                <ReviewsSection 
+                  reviews={product.reviews}
+                  averageRating={product.rating}
+                  totalReviews={product.reviewCount}
+                />
               )}
             </div>
           </CardContent>
