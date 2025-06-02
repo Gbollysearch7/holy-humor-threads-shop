@@ -13,6 +13,11 @@ import OurStory from "./pages/OurStory";
 import Contact from "./pages/Contact";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
+import ShippingInfo from "./pages/ShippingInfo";
+import ReturnsExchanges from "./pages/ReturnsExchanges";
+import TrackOrder from "./pages/TrackOrder";
+import FAQ from "./pages/FAQ";
+import GiftCards from "./pages/GiftCards";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +38,11 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/our-story" element={<OurStory />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/shipping-info" element={<ShippingInfo />} />
+              <Route path="/returns-exchanges" element={<ReturnsExchanges />} />
+              <Route path="/track-order" element={<TrackOrder />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/gift-cards" element={<GiftCards />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

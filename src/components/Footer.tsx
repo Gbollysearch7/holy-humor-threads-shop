@@ -1,4 +1,3 @@
-
 export const Footer = () => {
   return (
     <footer className="bg-gray-900 dark:bg-gray-950 text-white py-16 transition-colors duration-300">
@@ -32,11 +31,11 @@ export const Footer = () => {
           <div className="animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
             <h3 className="text-lg font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Shop All</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">New Arrivals</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Best Sellers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Size Guide</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Gift Cards</a></li>
+              <li><a href="/shop" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Shop All</a></li>
+              <li><a href="/shop?category=new-arrivals" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">New Arrivals</a></li>
+              <li><a href="/shop?sort=featured" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Best Sellers</a></li>
+              <li><a href="/size-guide" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Size Guide</a></li>
+              <li><a href="/gift-cards" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Gift Cards</a></li>
             </ul>
           </div>
 
@@ -44,11 +43,11 @@ export const Footer = () => {
           <div className="animate-slide-in-left" style={{ animationDelay: '0.4s' }}>
             <h3 className="text-lg font-bold mb-6">Customer Care</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Contact Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Shipping Info</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Returns & Exchanges</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Track Your Order</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">FAQ</a></li>
+              <li><a href="/contact" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Contact Us</a></li>
+              <li><a href="/shipping-info" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Shipping Info</a></li>
+              <li><a href="/returns-exchanges" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Returns & Exchanges</a></li>
+              <li><a href="/track-order" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">Track Your Order</a></li>
+              <li><a href="/faq" className="text-gray-400 hover:text-holy-gold transition-colors duration-300 hover:translate-x-1 transform">FAQ</a></li>
             </ul>
           </div>
 
@@ -56,9 +55,8 @@ export const Footer = () => {
           <div className="animate-slide-in-left" style={{ animationDelay: '0.6s' }}>
             <h3 className="text-lg font-bold mb-6">Get in Touch</h3>
             <div className="space-y-3 text-gray-400">
-              <p className="hover:text-holy-gold transition-colors duration-300">📧 hello@holyhumor.com</p>
-              <p className="hover:text-holy-gold transition-colors duration-300">📞 1-800-HOLY-FUN</p>
-              <p className="hover:text-holy-gold transition-colors duration-300">📍 123 Faith Street<br />Joy City, JY 12345</p>
+              <p className="hover:text-holy-gold transition-colors duration-300">📧 info@holyhumor.com</p>
+              <p className="hover:text-holy-gold transition-colors duration-300">📍 123 Faith Street<br />Manchester, M1 5GD<br />United Kingdom</p>
             </div>
           </div>
         </div>

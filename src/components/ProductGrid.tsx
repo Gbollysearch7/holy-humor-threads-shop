@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -16,7 +17,10 @@ export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
     let products = [...enhancedProducts];
 
     // Filter by category
-    if (category !== "all") {
+    if (category === "new-arrivals") {
+      // For demo purposes, treat the first 4 products as new arrivals
+      products = products.slice(0, 4);
+    } else if (category !== "all") {
       products = products.filter(product => product.category === category);
     }
 

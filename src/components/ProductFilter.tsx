@@ -11,6 +11,7 @@ interface ProductFilterProps {
 
 const categories = [
   { id: "all", label: "All Products", icon: "🛍️" },
+  { id: "new-arrivals", label: "New Arrivals", icon: "🆕" },
   { id: "humor", label: "Humor", icon: "😄" },
   { id: "inspirational", label: "Inspirational", icon: "✝️" },
 ];

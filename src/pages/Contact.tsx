@@ -34,9 +34,23 @@ const Contact = () => {
                 <p className="text-foreground/70 mb-2">
                   For general inquiries and customer support:
                 </p>
-                <a href="mailto:hello@holyhumor.com" className="text-holy-blue dark:text-holy-gold hover:underline font-medium">
-                  hello@holyhumor.com
+                <a href="mailto:info@holyhumor.com" className="text-holy-blue dark:text-holy-gold hover:underline font-medium">
+                  info@holyhumor.com
                 </a>
+              </div>
+
+              <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover-scale">
+                <h3 className="text-2xl font-bold text-holy-blue dark:text-holy-gold mb-4">
+                  📍 Visit Us
+                </h3>
+                <p className="text-foreground/70 mb-2">
+                  Our office address:
+                </p>
+                <div className="text-foreground">
+                  123 Faith Street<br />
+                  Manchester, M1 5GD<br />
+                  United Kingdom
+                </div>
               </div>
 
               <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover-scale">
