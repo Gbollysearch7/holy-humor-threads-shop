@@ -1,9 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "@/contexts/CartContext";
 import { Minus, Plus, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -114,10 +114,14 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                 
                 <div className="space-y-2">
                   <Button 
+                    asChild
                     className="w-full bg-holy-blue hover:bg-holy-blue/90 dark:bg-holy-gold dark:hover:bg-holy-gold/90 dark:text-gray-900"
                     size="lg"
+                    onClick={onClose}
                   >
-                    Proceed to Checkout
+                    <Link to="/checkout">
+                      Proceed to Checkout
+                    </Link>
                   </Button>
                   <div className="flex space-x-2">
                     <Button 
