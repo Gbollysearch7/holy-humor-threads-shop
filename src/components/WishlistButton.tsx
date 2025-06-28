@@ -7,14 +7,14 @@ import { toast } from "sonner";
 interface WishlistButtonProps {
   productId: string;
   productName: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "default" | "lg" | "icon";
   variant?: "default" | "outline" | "ghost";
 }
 
 export const WishlistButton = ({ 
   productId, 
   productName, 
-  size = "md", 
+  size = "default", 
   variant = "ghost" 
 }: WishlistButtonProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
