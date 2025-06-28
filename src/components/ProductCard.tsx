@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { WishlistButton } from "@/components/WishlistButton";
 import { QuickShop } from "@/components/QuickShop";
-import { DetailedProduct } from "@/data/enhancedProducts";
+import { DetailedProduct } from "@/types/product";
 import { toast } from "sonner";
 
 interface ProductCardProps {
@@ -34,9 +34,17 @@ export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
       >
         <div className="relative">
           <div className="bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-700 dark:to-gray-600 h-64 flex items-center justify-center transition-colors duration-300">
-            <div className="text-6xl mb-4 animate-float" style={{ animationDelay: `${delay * 0.2}s` }}>
-              {product.image}
-            </div>
+            {product.image.startsWith('/') ? (
+              <img 
+                src={product.image} 
+                alt={product.name}
+                className="max-w-full max-h-full object-contain"
+              />
+            ) : (
+              <div className="text-6xl mb-4 animate-float" style={{ animationDelay: `${delay * 0.2}s` }}>
+                {product.image}
+              </div>
+            )}
           </div>
           
           {/* Badges */}

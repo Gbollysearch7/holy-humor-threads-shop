@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
-import { DetailedProduct } from "@/data/enhancedProducts";
+import { DetailedProduct } from "@/types/product";
 import { Star, Plus, Minus, Heart } from "lucide-react";
 import { ProductImageZoom } from "@/components/ProductImageZoom";
 import { SizeGuide } from "@/components/SizeGuide";
@@ -89,9 +89,17 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
       {/* Product Images */}
       <div className="space-y-4">
         <div className="relative group aspect-square bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 dark:from-holy-gold/10 dark:to-holy-blue/10 rounded-lg flex items-center justify-center">
-          <div className="text-8xl animate-float">
-            {product.image}
-          </div>
+          {product.image.startsWith('/') ? (
+            <img 
+              src={product.image} 
+              alt={product.name}
+              className="max-w-full max-h-full object-contain"
+            />
+          ) : (
+            <div className="text-8xl animate-float">
+              {product.image}
+            </div>
+          )}
           <ProductImageZoom image={product.image} productName={product.name} />
         </div>
         
@@ -101,7 +109,15 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
               key={index}
               className="aspect-square bg-gradient-to-br from-holy-blue/5 to-holy-gold/5 dark:from-holy-gold/5 dark:to-holy-blue/5 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-holy-blue/15 hover:to-holy-gold/15 transition-colors"
             >
-              <div className="text-2xl">{img}</div>
+              {img.startsWith('/') ? (
+                <img 
+                  src={img} 
+                  alt={`${product.name} ${index + 1}`}
+                  className="max-w-full max-h-full object-contain"
+                />
+              ) : (
+                <div className="text-2xl">{img}</div>
+              )}
             </div>
           ))}
         </div>

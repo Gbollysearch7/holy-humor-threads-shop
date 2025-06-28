@@ -1,7 +1,7 @@
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ProductCard } from "@/components/ProductCard";
-import { enhancedProducts } from "@/data/enhancedProducts";
+import { enhancedProducts } from "@/data/productData";
 
 interface ProductRecommendationsProps {
   currentProductId?: string;

@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { ProductDetailContent } from "@/components/ProductDetailContent";
 import { RelatedProducts } from "@/components/RelatedProducts";
 import { ProductDetailSkeleton } from "@/components/ProductDetailSkeleton";
-import { getProductById } from "@/data/enhancedProducts";
+import { getProductById } from "@/utils/productUtils";
 import { ArrowLeft, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";

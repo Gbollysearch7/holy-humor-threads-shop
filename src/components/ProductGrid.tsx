@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { enhancedProducts, DetailedProduct } from "@/data/enhancedProducts";
+import { enhancedProducts } from "@/data/productData";
+import { DetailedProduct } from "@/types/product";
 
 interface ProductGridProps {
   category: string;

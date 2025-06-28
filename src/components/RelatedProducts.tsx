@@ -1,6 +1,6 @@
 
 import { ProductCard } from "@/components/ProductCard";
-import { getRelatedProducts } from "@/data/enhancedProducts";
+import { getRelatedProducts } from "@/utils/productUtils";
 
 interface RelatedProductsProps {
   productId: string;
