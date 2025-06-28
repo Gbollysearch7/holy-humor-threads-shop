@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { WishlistButton } from "@/components/WishlistButton";
@@ -15,21 +16,34 @@ interface ProductCardProps {
 export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickShop, setShowQuickShop] = useState(false);
+  const navigate = useNavigate();
 
-  const handleQuickView = () => {
+  const handleQuickView = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setShowQuickShop(true);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
     toast.success(`${product.name} added to cart! 🛒`);
+  };
+
+  const handleProductClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
+  const handleViewDetails = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigate(`/product/${product.id}`);
   };
 
   return (
     <>
       <div
-        className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-border hover-scale group"
+        className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-border hover-scale group cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleProductClick}
         style={{ animationDelay: `${delay}s` }}
       >
         <div className="relative">
@@ -67,7 +81,7 @@ export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
           </div>
 
           {/* Wishlist Button */}
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-4 right-4" onClick={(e) => e.stopPropagation()}>
             <WishlistButton 
               productId={product.id} 
               productName={product.name}
@@ -89,6 +103,7 @@ export const ProductCard = ({ product, delay = 0 }: ProductCardProps) => {
                 <Button 
                   variant="outline" 
                   className="bg-white hover:bg-gray-100 text-holy-blue border-white font-bold transform hover:scale-110 transition-transform duration-300"
+                  onClick={handleViewDetails}
                 >
                   View Details
                 </Button>
