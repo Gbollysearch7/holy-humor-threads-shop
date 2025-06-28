@@ -1,50 +1,17 @@
 
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useEffect } from "react";
 
 export const Hero = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [showContent, setShowContent] = useState(false);
-
-  useEffect(() => {
-    // Show content after 6 seconds
-    const timer = setTimeout(() => {
-      setShowContent(true);
-    }, 6000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-900 dark:to-gray-800 py-20 lg:py-32 min-h-screen flex items-center overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-          onLoadedData={() => console.log('Hero video loaded')}
-          onError={(e) => {
-            console.error('Hero video failed to load:', e);
-          }}
-        >
-          <source 
-            src="https://cdn.pixabay.com/video/2025/02/25/260895_large.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        {/* Video overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="relative bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-900 dark:to-gray-800 py-20 lg:py-32 transition-colors duration-300">
+      <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div ref={ref} className={`text-center lg:text-left transition-all duration-1000 ${
-            isVisible && showContent ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'
+            isVisible ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'
           }`}>
             <h1 className="text-5xl lg:text-7xl font-bold text-holy-blue dark:text-white mb-6 leading-tight text-shadow">
               Where Faith
@@ -72,10 +39,10 @@ export const Hero = () => {
 
           {/* Right Content - Hero Image */}
           <div className={`relative transition-all duration-1000 delay-300 ${
-            isVisible && showContent ? 'animate-slide-in-right' : 'opacity-0 translate-x-[50px]'
+            isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-[50px]'
           }`}>
             <div className="bg-gradient-to-r from-holy-gold to-yellow-500 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-              <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-6 text-center">
+              <div className="bg-background rounded-2xl p-6 text-center">
                 <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-yellow-100 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300">
                   <div className="text-6xl animate-float">👕</div>
                 </div>
@@ -87,10 +54,10 @@ export const Hero = () => {
             </div>
             
             {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-full p-3 shadow-lg animate-float" style={{ animationDelay: '0.5s' }}>
+            <div className="absolute -top-4 -right-4 bg-background rounded-full p-3 shadow-lg animate-float" style={{ animationDelay: '0.5s' }}>
               <span className="text-2xl">✨</span>
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-background/90 backdrop-blur-sm rounded-full p-3 shadow-lg animate-float" style={{ animationDelay: '1s' }}>
+            <div className="absolute -bottom-4 -left-4 bg-background rounded-full p-3 shadow-lg animate-float" style={{ animationDelay: '1s' }}>
               <span className="text-2xl">💝</span>
             </div>
           </div>
