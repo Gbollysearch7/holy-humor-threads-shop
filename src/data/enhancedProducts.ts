@@ -1,4 +1,3 @@
-
 export interface Review {
   id: string;
   customerName: string;
@@ -86,6 +85,56 @@ export const enhancedProducts: DetailedProduct[] = [
     reviewCount: 24,
     isFeatured: true,
     isNewArrival: false,
+    isOnSale: false
+  },
+  {
+    id: "13",
+    name: "Scripture Says Peace, I Say Maybe (Light)",
+    price: 24.99,
+    category: "humor",
+    subcategory: "scripture",
+    image: "/lovable-uploads/80f4160c-ed0b-485e-ab75-2baa22b4d6bd.png",
+    description: "A humorous take on finding peace - sometimes we need a little more convincing! Light background version.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    gallery: ["/lovable-uploads/80f4160c-ed0b-485e-ab75-2baa22b4d6bd.png", "/lovable-uploads/80f4160c-ed0b-485e-ab75-2baa22b4d6bd.png", "/lovable-uploads/80f4160c-ed0b-485e-ab75-2baa22b4d6bd.png"],
+    detailedDescription: "Perfect for those moments when scripture calls for peace but you're still working on it! This playful design brings humor to our faith journey while acknowledging that spiritual growth is a process. Great conversation starter and perfect for anyone who appreciates honest, relatable Christian humor.",
+    careInstructions: "Machine wash cold with like colors. Tumble dry low. Do not iron directly on design.",
+    materials: "100% Premium Cotton",
+    fit: "Classic Fit - True to size",
+    reviews: [],
+    relatedProducts: ["14", "5", "6"],
+    tags: ["humor", "scripture", "peace", "funny", "christian", "relatable"],
+    inStock: true,
+    stockCount: 25,
+    rating: 4.6,
+    reviewCount: 8,
+    isFeatured: true,
+    isNewArrival: true,
+    isOnSale: false
+  },
+  {
+    id: "14",
+    name: "Scripture Says Peace, I Say Maybe (Dark)",
+    price: 24.99,
+    category: "humor",
+    subcategory: "scripture",
+    image: "/lovable-uploads/d34785a0-c01b-406e-b25c-2588cef91083.png",
+    description: "A humorous take on finding peace - sometimes we need a little more convincing! Dark background version.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    gallery: ["/lovable-uploads/d34785a0-c01b-406e-b25c-2588cef91083.png", "/lovable-uploads/d34785a0-c01b-406e-b25c-2588cef91083.png", "/lovable-uploads/d34785a0-c01b-406e-b25c-2588cef91083.png"],
+    detailedDescription: "Perfect for those moments when scripture calls for peace but you're still working on it! This playful design brings humor to our faith journey while acknowledging that spiritual growth is a process. Great conversation starter and perfect for anyone who appreciates honest, relatable Christian humor.",
+    careInstructions: "Machine wash cold with like colors. Tumble dry low. Do not iron directly on design.",
+    materials: "100% Premium Cotton",
+    fit: "Classic Fit - True to size",
+    reviews: [],
+    relatedProducts: ["13", "5", "6"],
+    tags: ["humor", "scripture", "peace", "funny", "christian", "relatable"],
+    inStock: true,
+    stockCount: 25,
+    rating: 4.6,
+    reviewCount: 8,
+    isFeatured: true,
+    isNewArrival: true,
     isOnSale: false
   },
   {
