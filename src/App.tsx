@@ -9,6 +9,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import OurStory from "./pages/OurStory";
 import Contact from "./pages/Contact";
 import ProductDetail from "./pages/ProductDetail";
