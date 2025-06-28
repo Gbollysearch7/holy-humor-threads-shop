@@ -1,29 +1,28 @@
-
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const statistics = [
   {
     icon: "💝",
-    number: "10K+",
+    number: "100K+",
     label: "Happy Customers",
     color: "text-purple-500"
   },
   {
     icon: "😊",
-    number: "50+",
+    number: "250+",
     label: "Unique Designs",
     color: "text-yellow-500"
   },
   {
     icon: "⏰",
-    number: "3+",
+    number: "5+",
     label: "Years of Joy",
     color: "text-green-500"
   },
   {
     icon: "🌍",
     number: "25+",
-    label: "States Reached",
+    label: "Countries Reached",
     color: "text-blue-500"
   }
 ];
