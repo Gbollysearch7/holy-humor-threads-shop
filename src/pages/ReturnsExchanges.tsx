@@ -30,9 +30,9 @@ const ReturnsExchanges = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="bg-muted p-4 rounded-lg">
-                  <p className="font-semibold text-lg mb-2">30-Day Return Window</p>
+                  <p className="font-semibold text-lg mb-2">7-Day Return Window</p>
                   <p className="text-foreground/70">
-                    You have 30 days from the date of delivery to return your items for a full refund.
+                    You have 7 days from the date of delivery to return your items for a full refund.
                   </p>
                 </div>
                 <ul className="space-y-2 text-foreground/70">
@@ -51,7 +51,7 @@ const ReturnsExchanges = () => {
               <CardContent>
                 <div className="space-y-4">
                   <p className="text-foreground/70">
-                    Need a different size or color? We offer free exchanges within 30 days of purchase.
+                    Need a different size or color? We offer free exchanges within 7 days of purchase.
                   </p>
                   <div className="bg-holy-blue/10 dark:bg-holy-gold/10 p-4 rounded-lg">
                     <h3 className="font-semibold mb-2">How to Exchange:</h3>

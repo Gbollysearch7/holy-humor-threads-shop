@@ -14,7 +14,7 @@ export const OrderSummary = () => {
   const [discount, setDiscount] = useState(0);
 
   const subtotal = getTotalPrice();
-  const shipping = subtotal > 50 ? 0 : 9.99;
+  const shipping = subtotal > 100 ? 0 : 9.99;
   const tax = (subtotal - discount) * 0.08; // 8% tax
   const total = subtotal + shipping + tax - discount;
 
@@ -148,7 +148,7 @@ export const OrderSummary = () => {
             </div>
             <div className="flex items-center gap-1">
               <Truck className="h-3 w-3" />
-              <span>Free Shipping $50+</span>
+              <span>Free Shipping $100+</span>
             </div>
           </div>
         </CardContent>

@@ -42,7 +42,7 @@ const ShippingInfo = () => {
                   </div>
                 </div>
                 <p className="text-sm text-foreground/70">
-                  Free standard shipping on orders over £50!
+                  Free standard shipping on orders over £100!
                 </p>
               </CardContent>
             </Card>
