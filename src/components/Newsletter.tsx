@@ -57,11 +57,11 @@ export const Newsletter = () => {
             </div>
             <div className="flex items-center gap-2 hover:scale-110 transition-transform duration-300">
               <span className="text-2xl animate-float" style={{ animationDelay: '0.5s' }}>📦</span>
-              <span>Free Shipping $50+</span>
+              <span>Free Shipping £100+</span>
             </div>
             <div className="flex items-center gap-2 hover:scale-110 transition-transform duration-300">
               <span className="text-2xl animate-float" style={{ animationDelay: '1s' }}>↩️</span>
-              <span>30-Day Returns</span>
+              <span>7-Day Returns</span>
             </div>
           </div>
         </div>

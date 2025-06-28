@@ -5,7 +5,6 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Testimonials } from "@/components/Testimonials";
 import { CommunityStories } from "@/components/CommunityStories";
 import { OurStorySection } from "@/components/OurStorySection";
-import { SocialProof } from "@/components/SocialProof";
 import { ProductRecommendations } from "@/components/ProductRecommendations";
 import { Newsletter } from "@/components/Newsletter";
 import { Navigation } from "@/components/Navigation";
@@ -19,7 +18,6 @@ const Index = () => {
         <Hero />
         <FeaturedProducts />
         <WhyChooseUs />
-        <SocialProof />
         <Testimonials />
         <ProductRecommendations title="Trending Designs" limit={4} />
         <CommunityStories />
