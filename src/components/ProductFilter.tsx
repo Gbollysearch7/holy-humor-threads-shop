@@ -7,6 +7,8 @@ interface ProductFilterProps {
   onCategoryChange: (category: string) => void;
   sortBy: string;
   onSortChange: (sort: string) => void;
+  isMobile?: boolean;
+  onClose?: () => void;
 }
 
 const categories = [
@@ -23,9 +25,81 @@ const sortOptions = [
   { id: "price-high", label: "Price: High to Low" },
 ];
 
-export const ProductFilter = ({ selectedCategory, onCategoryChange, sortBy, onSortChange }: ProductFilterProps) => {
+export const ProductFilter = ({ 
+  selectedCategory, 
+  onCategoryChange, 
+  sortBy, 
+  onSortChange,
+  isMobile = false,
+  onClose
+}: ProductFilterProps) => {
+  const handleCategoryChange = (category: string) => {
+    onCategoryChange(category);
+    if (isMobile && onClose) {
+      onClose();
+    }
+  };
+
+  const handleSortChange = (sort: string) => {
+    onSortChange(sort);
+    if (isMobile && onClose) {
+      onClose();
+    }
+  };
+
+  if (isMobile) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-semibold text-holy-blue dark:text-holy-gold mb-4">
+            Categories
+          </h3>
+          <div className="grid grid-cols-2 gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? "default" : "outline"}
+                className={`justify-start transition-all duration-300 ${
+                  selectedCategory === category.id 
+                    ? "bg-holy-blue hover:bg-holy-blue/90 dark:bg-holy-gold dark:hover:bg-holy-gold/90 dark:text-gray-900" 
+                    : "hover:bg-accent"
+                }`}
+                onClick={() => handleCategoryChange(category.id)}
+              >
+                <span className="mr-2">{category.icon}</span>
+                {category.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold text-holy-blue dark:text-holy-gold mb-4">
+            Sort By
+          </h3>
+          <div className="grid grid-cols-1 gap-2">
+            {sortOptions.map((option) => (
+              <Button
+                key={option.id}
+                variant={sortBy === option.id ? "default" : "outline"}
+                className={`justify-start transition-all duration-300 ${
+                  sortBy === option.id 
+                    ? "bg-holy-blue hover:bg-holy-blue/90 dark:bg-holy-gold dark:hover:bg-holy-gold/90 dark:text-gray-900" 
+                    : "hover:bg-accent"
+                }`}
+                onClick={() => handleSortChange(option.id)}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sticky top-4">
       <Card className="border border-border">
         <CardHeader>
           <CardTitle className="text-holy-blue dark:text-holy-gold">
