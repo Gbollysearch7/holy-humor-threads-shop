@@ -39,13 +39,23 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
     await new Promise(resolve => setTimeout(resolve, 800));
 
     try {
-      addToCart({
-        id: product.id,
+      // Find the selected variant based on size
+      const selectedVariant = product.variants?.find(variant => 
+        variant.selectedOptions.some(option => 
+          option.name.toLowerCase() === 'size' && option.value === selectedSize
+        )
+      ) || product.variants?.[0];
+
+      if (!selectedVariant) {
+        throw new Error('Selected variant not found');
+      }
+
+      await addToCart(selectedVariant.id, quantity, {
         name: product.name,
         price: product.price,
         image: product.image,
-        quantity: quantity,
-        size: selectedSize
+        size: selectedSize,
+        handle: product.handle || product.id
       });
 
       toast({

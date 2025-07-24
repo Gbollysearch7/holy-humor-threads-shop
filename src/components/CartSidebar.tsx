@@ -83,7 +83,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => handleUpdateQuantity(`${item.id}-${item.size}`, item.quantity - 1)}
+                            onClick={() => handleUpdateQuantity(item.lineId, item.quantity - 1)}
                             className="h-8 w-8"
                           >
                             <Minus className="h-3 w-3" />
@@ -92,7 +92,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => handleUpdateQuantity(`${item.id}-${item.size}`, item.quantity + 1)}
+                            onClick={() => handleUpdateQuantity(item.lineId, item.quantity + 1)}
                             className="h-8 w-8"
                           >
                             <Plus className="h-3 w-3" />

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Tag, Truck, Shield } from "lucide-react";
 
 export const OrderSummary = () => {
-  const { items, getTotalPrice } = useCart();
+  const { items, getTotalPrice, getCheckoutUrl } = useCart();
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [discount, setDiscount] = useState(0);

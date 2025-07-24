@@ -9,11 +9,27 @@ export interface Review {
 }
 
 export interface ProductVariant {
-  color: string;
-  colorCode: string;
-  image: string;
-  inStock: boolean;
-  stockCount: number;
+  id: string;
+  title: string;
+  price: {
+    amount: string;
+    currencyCode: string;
+  };
+  compareAtPrice?: {
+    amount: string;
+    currencyCode: string;
+  };
+  availableForSale: boolean;
+  quantityAvailable: number;
+  selectedOptions: Array<{
+    name: string;
+    value: string;
+  }>;
+  color?: string;
+  colorCode?: string;
+  image?: string;
+  inStock?: boolean;
+  stockCount?: number;
 }
 
 export interface DetailedProduct {
@@ -42,6 +58,7 @@ export interface DetailedProduct {
   isFeatured: boolean;
   isNewArrival: boolean;
   isOnSale: boolean;
+  handle?: string;
 }
 
 export interface Category {

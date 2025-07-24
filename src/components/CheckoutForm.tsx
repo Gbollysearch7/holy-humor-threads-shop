@@ -7,6 +7,7 @@ import { ShippingForm } from "@/components/ShippingForm";
 import { PaymentForm } from "@/components/PaymentForm";
 import { OrderConfirmation } from "@/components/OrderConfirmation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 type CheckoutStep = 'shipping' | 'payment' | 'confirmation';
 
@@ -14,6 +15,7 @@ export const CheckoutForm = () => {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('shipping');
   const [shippingData, setShippingData] = useState<any>(null);
   const [paymentData, setPaymentData] = useState<any>(null);
+  const { getCheckoutUrl } = useCart();
 
   const steps = [
     { id: 'shipping', title: 'Shipping Information', number: 1 },
@@ -32,6 +34,13 @@ export const CheckoutForm = () => {
   const handlePaymentComplete = (data: any) => {
     setPaymentData(data);
     setCurrentStep('confirmation');
+  };
+
+  const handleShopifyCheckout = () => {
+    const checkoutUrl = getCheckoutUrl();
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    }
   };
 
   const handleBack = () => {
@@ -93,6 +102,20 @@ export const CheckoutForm = () => {
             paymentData={paymentData}
           />
         )}
+
+        {/* Shopify Checkout Button */}
+        <div className="pt-4 space-y-4">
+          <Button
+            onClick={handleShopifyCheckout}
+            className="w-full bg-holy-blue hover:bg-holy-blue/90 dark:bg-holy-gold dark:hover:bg-holy-gold/90 dark:text-gray-900"
+            size="lg"
+          >
+            Complete Purchase with Shopify
+          </Button>
+          <p className="text-xs text-center text-foreground/60">
+            You'll be redirected to Shopify's secure checkout
+          </p>
+        </div>
 
         {/* Navigation Buttons */}
         {currentStep !== 'confirmation' && (

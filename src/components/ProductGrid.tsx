@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { enhancedProducts } from "@/data/productData";
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { DetailedProduct } from "@/types/product";
 
 interface ProductGridProps {
@@ -11,11 +11,14 @@ interface ProductGridProps {
 }
 
 export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
-  const [filteredProducts, setFilteredProducts] = useState<DetailedProduct[]>(enhancedProducts);
+  const [filteredProducts, setFilteredProducts] = useState<DetailedProduct[]>([]);
   const { ref, isVisible } = useScrollAnimation();
+  const { products: shopifyProducts, loading } = useShopifyProducts();
 
   useEffect(() => {
-    let products = [...enhancedProducts];
+    if (!shopifyProducts.length) return;
+    
+    let products = [...shopifyProducts];
 
     // Filter by category
     if (category === "new-arrivals") {
@@ -42,7 +45,7 @@ export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
     }
 
     setFilteredProducts(products);
-  }, [category, sortBy]);
+  }, [category, sortBy, shopifyProducts]);
 
   return (
     <div ref={ref} className={`transition-all duration-1000 ${
@@ -65,7 +68,13 @@ export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
         ))}
       </div>
       
-      {filteredProducts.length === 0 && (
+      {loading && (
+        <div className="text-center py-16">
+          <p className="text-2xl text-foreground/50">Loading products...</p>
+        </div>
+      )}
+      
+      {!loading && filteredProducts.length === 0 && (
         <div className="text-center py-16">
           <p className="text-2xl text-foreground/50">No products found in this category.</p>
           <p className="text-foreground/40 mt-2">Try selecting a different category or adjusting your filters.</p>
