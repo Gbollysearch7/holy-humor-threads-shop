@@ -62,7 +62,17 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                 <div className="space-y-4">
                   {items.map((item) => (
                     <div key={`${item.id}-${item.size}`} className="flex items-center space-x-4 p-4 border border-border rounded-lg">
-                      <div className="text-3xl">{item.image}</div>
+                       <div className="w-16 h-16 bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 rounded-lg flex items-center justify-center overflow-hidden">
+                         {item.image.startsWith('/') || item.image.startsWith('http') ? (
+                           <img 
+                             src={item.image} 
+                             alt={item.name}
+                             className="w-full h-full object-cover"
+                           />
+                         ) : (
+                           <span className="text-2xl">{item.image}</span>
+                         )}
+                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium text-foreground">{item.name}</h4>
                         <p className="text-sm text-foreground/60">Size: {item.size}</p>
@@ -71,14 +81,14 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                         </p>
                       </div>
                       <div className="flex flex-col items-end space-y-2">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleRemoveItem(`${item.id}-${item.size}`, item.name)}
-                          className="h-6 w-6 text-foreground/60 hover:text-red-500"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
+                         <Button
+                           variant="ghost"
+                           size="icon"
+                           onClick={() => handleRemoveItem(item.lineId, item.name)}
+                           className="h-6 w-6 text-foreground/60 hover:text-red-500"
+                         >
+                           <X className="h-4 w-4" />
+                         </Button>
                         <div className="flex items-center space-x-2">
                           <Button
                             variant="outline"

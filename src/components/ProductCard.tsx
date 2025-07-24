@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { WishlistButton } from "@/components/WishlistButton";
 import { QuickShop } from "@/components/QuickShop";
 import { DetailedProduct } from "@/types/product";
-import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   product: DetailedProduct;
@@ -18,15 +19,42 @@ export const ProductCard = ({ product, delay = 0, compact = false }: ProductCard
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickShop, setShowQuickShop] = useState(false);
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const handleQuickView = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowQuickShop(true);
   };
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    toast.success(`${product.name} added to cart! 🛒`);
+    if (product.variants && product.variants.length > 0) {
+      const variant = product.variants[0];
+      const sizeOption = variant.selectedOptions?.find(opt => opt.name.toLowerCase() === 'size');
+      
+      try {
+        await addToCart(variant.id, 1, {
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          size: sizeOption?.value || 'One Size',
+          handle: product.handle || ''
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to add item to cart",
+          variant: "destructive",
+        });
+      }
+    } else {
+      toast({
+        title: "Error",
+        description: "Product variant not available",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleProductClick = () => {

@@ -56,14 +56,14 @@ export const ProductGrid = ({ category, sortBy }: ProductGridProps) => {
         Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
       </div>
 
-      {/* Product Grid - 5 columns on desktop, responsive on smaller screens */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
+      {/* Product Grid - 4 columns on desktop, responsive on smaller screens */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
         {filteredProducts.map((product, index) => (
           <ProductCard 
             key={product.id} 
             product={product}
             delay={index * 0.1}
-            compact={true}
+            compact={false}
           />
         ))}
       </div>
