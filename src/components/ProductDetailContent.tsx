@@ -99,7 +99,7 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
       {/* Product Images */}
       <div className="space-y-4">
         <div className="relative group aspect-square bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 dark:from-holy-gold/10 dark:to-holy-blue/10 rounded-lg flex items-center justify-center">
-          {product.image.startsWith('/') ? (
+          {product.image.startsWith('/') || product.image.startsWith('http') ? (
             <img 
               src={product.image} 
               alt={product.name}
@@ -119,7 +119,7 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
               key={index}
               className="aspect-square bg-gradient-to-br from-holy-blue/5 to-holy-gold/5 dark:from-holy-gold/5 dark:to-holy-blue/5 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-holy-blue/15 hover:to-holy-gold/15 transition-colors"
             >
-              {img.startsWith('/') ? (
+              {img.startsWith('/') || img.startsWith('http') ? (
                 <img 
                   src={img} 
                   alt={`${product.name} ${index + 1}`}

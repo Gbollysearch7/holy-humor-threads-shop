@@ -30,12 +30,12 @@ export const ProductCard = ({ product, delay = 0, compact = false }: ProductCard
   };
 
   const handleProductClick = () => {
-    navigate(`/product/${product.id}`);
+    navigate(`/product/${product.handle || product.id}`);
   };
 
   const handleViewDetails = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(`/product/${product.id}`);
+    navigate(`/product/${product.handle || product.id}`);
   };
 
   return (
@@ -49,7 +49,7 @@ export const ProductCard = ({ product, delay = 0, compact = false }: ProductCard
       >
         <div className="relative">
           <div className={`bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-700 dark:to-gray-600 ${compact ? 'h-48' : 'h-64'} flex items-center justify-center transition-colors duration-300`}>
-            {product.image.startsWith('/') ? (
+            {product.image.startsWith('/') || product.image.startsWith('http') ? (
               <img 
                 src={product.image} 
                 alt={product.name}

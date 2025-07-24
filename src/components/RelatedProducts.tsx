@@ -1,13 +1,14 @@
 
 import { ProductCard } from "@/components/ProductCard";
-import { getRelatedProducts } from "@/utils/productUtils";
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 
 interface RelatedProductsProps {
   productId: string;
 }
 
 export const RelatedProducts = ({ productId }: RelatedProductsProps) => {
-  const relatedProducts = getRelatedProducts(productId);
+  const { products } = useShopifyProducts();
+  const relatedProducts = products.slice(0, 3).filter(p => p.id !== productId);
 
   if (relatedProducts.length === 0) {
     return null;

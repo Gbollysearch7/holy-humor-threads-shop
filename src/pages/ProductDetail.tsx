@@ -12,11 +12,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const ProductDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const { handle } = useParams<{ handle: string }>();
   const navigate = useNavigate();
-  const { product, loading, error } = useShopifyProduct(id || '');
+  const { product, loading, error } = useShopifyProduct(handle || '');
 
-  if (!id) {
+  if (!handle) {
     return (
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <Navigation />
