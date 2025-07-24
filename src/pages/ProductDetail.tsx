@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { ProductDetailContent } from "@/components/ProductDetailContent";
 import { RelatedProducts } from "@/components/RelatedProducts";
 import { ProductDetailSkeleton } from "@/components/ProductDetailSkeleton";
-import { getProductById } from "@/utils/productUtils";
+import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { ArrowLeft, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { product, loading, error } = useShopifyProduct(id || '');
 
   if (!id) {
     return (
@@ -40,7 +41,42 @@ const ProductDetail = () => {
     );
   }
 
-  const product = getProductById(id);
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Navigation />
+        <main className="container mx-auto px-4 py-8">
+          <ProductDetailSkeleton />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Navigation />
+        <main className="container mx-auto px-4 py-16 text-center">
+          <Card className="max-w-md mx-auto">
+            <CardContent className="p-8">
+              <AlertCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
+              <h1 className="text-2xl font-bold text-destructive mb-4">
+                Error Loading Product
+              </h1>
+              <p className="text-foreground/70 mb-6">
+                {error}
+              </p>
+              <Button onClick={() => navigate("/shop")}>
+                Return to Shop
+              </Button>
+            </CardContent>
+          </Card>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
