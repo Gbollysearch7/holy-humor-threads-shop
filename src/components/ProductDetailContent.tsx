@@ -95,42 +95,40 @@ export const ProductDetailContent = ({ product }: ProductDetailContentProps) => 
   };
 
   return (
-    <div className="grid lg:grid-cols-2 gap-12 mb-16">
+    <div className="grid lg:grid-cols-2 gap-8 mb-12">
       {/* Product Images */}
       <div className="space-y-4">
-        <div className="relative group aspect-square bg-gradient-to-br from-holy-blue/10 to-holy-gold/10 dark:from-holy-gold/10 dark:to-holy-blue/10 rounded-lg flex items-center justify-center">
-          {product.image.startsWith('/') || product.image.startsWith('http') ? (
-            <img 
-              src={product.image} 
-              alt={product.name}
-              className="max-w-full max-h-full object-contain"
-            />
-          ) : (
-            <div className="text-8xl animate-float">
-              {product.image}
-            </div>
-          )}
+        <div className="relative group aspect-square bg-muted rounded-xl overflow-hidden">
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            onError={(e) => {
+              e.currentTarget.src = '/placeholder.svg';
+            }}
+          />
           <ProductImageZoom image={product.image} productName={product.name} />
         </div>
         
-        <div className="grid grid-cols-3 gap-2">
-          {product.gallery.map((img, index) => (
-            <div 
-              key={index}
-              className="aspect-square bg-gradient-to-br from-holy-blue/5 to-holy-gold/5 dark:from-holy-gold/5 dark:to-holy-blue/5 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-holy-blue/15 hover:to-holy-gold/15 transition-colors"
-            >
-              {img.startsWith('/') || img.startsWith('http') ? (
+        {product.gallery.length > 1 && (
+          <div className="grid grid-cols-4 gap-2">
+            {product.gallery.slice(0, 4).map((img, index) => (
+              <div 
+                key={index}
+                className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+              >
                 <img 
                   src={img} 
-                  alt={`${product.name} ${index + 1}`}
-                  className="max-w-full max-h-full object-contain"
+                  alt={`${product.name} view ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder.svg';
+                  }}
                 />
-              ) : (
-                <div className="text-2xl">{img}</div>
-              )}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Product Info */}

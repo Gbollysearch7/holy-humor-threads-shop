@@ -554,8 +554,10 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
 
 // Helper function to transform Shopify product to our format
 export function transformShopifyProduct(shopifyProduct: ShopifyProduct): any {
-  const mainImage = shopifyProduct.images.edges[0]?.node.url || '';
-  const gallery = shopifyProduct.images.edges.map(edge => edge.node.url);
+  const mainImage = shopifyProduct.images.edges[0]?.node.url || '/placeholder.svg';
+  const gallery = shopifyProduct.images.edges.length > 0 
+    ? shopifyProduct.images.edges.map(edge => edge.node.url)
+    : ['/placeholder.svg'];
   
   // Get the first variant for basic price info
   const firstVariant = shopifyProduct.variants.edges[0]?.node;

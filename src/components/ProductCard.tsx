@@ -76,18 +76,15 @@ export const ProductCard = ({ product, delay = 0, compact = false }: ProductCard
         style={{ animationDelay: `${delay}s` }}
       >
         <div className="relative">
-          <div className={`bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-gray-700 dark:to-gray-600 ${compact ? 'h-48' : 'h-64'} flex items-center justify-center transition-colors duration-300`}>
-            {product.image.startsWith('/') || product.image.startsWith('http') ? (
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="max-w-full max-h-full object-contain"
-              />
-            ) : (
-              <div className={`${compact ? 'text-4xl' : 'text-6xl'} mb-4 animate-float`} style={{ animationDelay: `${delay * 0.2}s` }}>
-                {product.image}
-              </div>
-            )}
+          <div className={`relative overflow-hidden rounded-lg bg-muted ${compact ? 'h-48' : 'h-64'}`}>
+            <img 
+              src={product.image} 
+              alt={product.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder.svg';
+              }}
+            />
           </div>
           
           {/* Badges */}
